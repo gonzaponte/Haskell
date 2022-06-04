@@ -10,10 +10,13 @@ module Utils
 ,insertAt
 ,deleteAt
 ,replaceAt
+,allPossibleSubsets
 ) where
 
 import Data.Function(on)
 import Data.List(sortOn)
+import Data.List(inits)
+import Data.List(tails)
 
 
 enumerate :: [a] -> [(Int, a)]
@@ -69,3 +72,7 @@ deleteAt xs i = take i xs ++ drop (i+1) xs
 
 replaceAt :: [a] -> Int -> a -> [a]
 replaceAt xs i x = take i xs ++ x : drop (i+1) xs
+
+
+allPossibleSubsets :: [a] -> [[a]]
+allPossibleSubsets = (concatMap inits) . tails
