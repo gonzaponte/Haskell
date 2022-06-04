@@ -16,8 +16,9 @@ generateXYCircle rng rmax = let (rngX, rngY) = split rng
 
 generateRandomDirections2pi :: (RandomGen g) => g -> ([Double], [Double])
 generateRandomDirections2pi rng = let (rngTheta, rngPhi) = split rng
-                                      randomsTheta = randomRs (0, 1   ) rngTheta
-                                      randomsPhi   = randomRs (0, 2*pi) rngPhi
+                                      randomsCosTheta = randomRs (0, 1   ) rngTheta
+                                      randomsTheta    = map acos randomsCosTheta
+                                      randomsPhi      = randomRs (0, 2*pi) rngPhi
                                   in (randomsTheta, randomsPhi)
 
 main = do
